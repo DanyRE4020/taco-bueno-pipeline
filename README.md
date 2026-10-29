@@ -186,3 +186,14 @@ las visualizaciones y la evaluación técnica.
 
 Consultar docs/decisiones_tecnicas.md para las decisiones sobre
 streaming, materialized views, expectations y Liquid Clustering.
+
+## Alcance técnico
+- Los YAML documentan la configuración del Job y del pipeline.
+  La preparación descrita utiliza la interfaz de Databricks;
+  todavía no se incluye un bundle de despliegue con databricks.yml.
+- Los CSV deben colocarse directamente en el Volume indicado,
+  conservando nombres únicos y sin reemplazar archivos procesados.
+- La validación consulta el inventario más reciente.
+  Las ejecuciones deben realizarse una después de otra.
+- La prueba de fallo controlado verifica las dependencias y la
+  recuperación del Job; no representa una prueba con CSV dañados.

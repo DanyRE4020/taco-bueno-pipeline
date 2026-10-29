@@ -1,0 +1,17 @@
+resources:
+  pipelines:
+    pipeline_taco_bueno_etl:
+      name: taco_bueno_etl
+      libraries:
+        - glob:
+            include: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/src/taco_bueno_etl/transformations/**
+        - glob:
+            include: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/src/transformations/**
+      schema: default
+      continuous: false
+      development: false
+      photon: true
+      channel: CURRENT
+      catalog: workspace
+      serverless: true
+      root_path: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/src/taco_bueno_etl

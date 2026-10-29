@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    taco_bueno_daily_job:
+      name: taco_bueno_daily_job
+      tasks:
+        - task_key: actualizar_pipeline
+          pipeline_task:
+            pipeline_id: ce065a9c-e8dd-4884-a511-b8a332aba8b3
+        - task_key: validar_datos
+          depends_on:
+            - task_key: actualizar_pipeline
+          notebook_task:
+            notebook_path: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/notebooks/03_validacion_pipeline
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED

@@ -4,8 +4,14 @@ resources:
       name: taco_bueno_daily_job
       tasks:
         - task_key: actualizar_pipeline
+          depends_on:
+            - task_key: revisar_archivos
           pipeline_task:
             pipeline_id: ce065a9c-e8dd-4884-a511-b8a332aba8b3
+        - task_key: revisar_archivos
+          notebook_task:
+            notebook_path: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/notebooks/04_inventario_archivos
+            source: WORKSPACE
         - task_key: validar_datos
           depends_on:
             - task_key: actualizar_pipeline

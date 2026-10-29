@@ -60,6 +60,7 @@ Los CSV fuente se almacenan en un Volume de Databricks.
 | gold_order_quality_daily | Cobertura del importe por fecha |
 | gold_monthly_kpis | Indicadores mensuales y cobertura |
 | gold_yoy_store_day | Pares de tienda y fecha presentes en ambos años |
+| gold_yoy_store_summary | Comparación por tienda para identificar crecimiento, disminución y concentración de las pérdidas de pedidos |
 
 ## Preparación y ejecución
 
@@ -197,3 +198,26 @@ streaming, materialized views, expectations y Liquid Clustering.
   Las ejecuciones deben realizarse una después de otra.
 - La prueba de fallo controlado verifica las dependencias y la
   recuperación del Job; no representa una prueba con CSV dañados.
+
+  ## Pruebas de calidad de Silver
+
+El pipeline taco_bueno_pruebas_calidad utiliza el mismo archivo
+st_pos_lines.py del pipeline principal y un CSV con ocho casos
+inventados: dos válidos y seis con problemas conocidos.
+
+Para reproducir la prueba:
+
+1. Ejecutar la celda de preparación de datos de
+   notebooks/07_pruebas_calidad.
+2. Crear el pipeline de pruebas tomando como referencia
+   resources/pipelines/lakeflow_pruebas_calidad.yml.
+   Adaptar las rutas al workspace utilizado.
+3. Confirmar catálogo workspace y esquema taco_bueno_pruebas.
+4. Ejecutar el pipeline de pruebas.
+5. Ejecutar las celdas de consulta y comprobación del notebook 07.
+
+Las comprobaciones verifican conservación de filas, interpretación
+de fechas y horas, claves faltantes, conversiones numéricas
+y conservación de importes nulos cuando faltan datos.
+
+Los ocho casos produjeron los resultados esperados.

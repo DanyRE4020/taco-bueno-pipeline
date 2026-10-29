@@ -1,0 +1,19 @@
+resources:
+  pipelines:
+    pipeline_taco_bueno_pruebas_calidad:
+      name: taco_bueno_pruebas_calidad
+      libraries:
+        - glob:
+            include: /Workspace/Users/daniroes2005@gmail.com/taco_bueno_pruebas_calidad/transformations/**
+        - glob:
+            include: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/tests/pipeline/st_pos_test.py
+        - glob:
+            include: /Workspace/Users/daniroes2005@gmail.com/taco-bueno-pipeline/src/transformations/silver/st_pos_lines.py
+      schema: taco_bueno_pruebas
+      continuous: false
+      development: false
+      photon: true
+      channel: CURRENT
+      catalog: workspace
+      serverless: true
+      root_path: /Workspace/Users/daniroes2005@gmail.com/taco_bueno_pruebas_calidad
